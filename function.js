@@ -1,22 +1,32 @@
 
 var ViewModel = {
 	labels: ko.observableArray([]),
-	newLabel: {
-		label: ko.observable(''),
-	},
+	newLabel:ko.observable(''),
 	
 	addLabel: function () {
-		var labelAdded = {
-			label: ko.observable(this.newLabel.label()),
+		var labelObj = {
+			name: ko.observable( this.newLabel() ),
+			isEdit: ko.observable( false )
 		};
-			this.labels.push(labelAdded);
-
+		if( this.labels().length <=6 ){
+			this.labels.push( labelObj );
+		};
 	},
-	removeLabels: function(item){
-		WiewModel.labels.remove(item);
+	removeAllLabels: function(){
+		this.labels([]);
+	},
+	removeLabel: function(item){
+		ViewModel.labels.remove(item);
+	},
+	editLabel: function(){
+		this.isEdit( true );
+	},
+	cancelEditLabel: function(){
+		this.isEdit( false );
 	}
 
 };
 
 ko.applyBindings(ViewModel);
+
 
