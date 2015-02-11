@@ -33,21 +33,10 @@
 						</span>
 					</li>
 			</ul>
-
-
-
-			<div class="form-group">
-				<label for="hobbies" class="col-sm-2 control-label">Hobbies</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control" id="hobbies" placeholder="hobby">
-				</div>
-				<div class="col-sm-2">
-					<button type="submit" class="btn btn-success">Add Hobby</button>
-				</div>
-				<div class="col-sm-2">
-					<button type="reset" class="btn btn-danger">Remove All</button>
-				</div>
+			<div class="alert alert-danger" role="alert"  data-bind= "visible:errorMessage().length >0">
+				<p data-bind ="text:errorMessage"></p>
 			</div>
+
 		</form>
 	</div>
 	<script type='text/javascript' src='assets/knockout-3.2.0.js'></script>
