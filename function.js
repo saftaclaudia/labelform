@@ -16,7 +16,6 @@ var ViewModel = {
 			this.newLabel('');
 			this.errorMessage('');
 		};
-
 		if(this.labels().length >=6 ){
 			this.errorMessage('You have reached the maxim label number');
 		};
@@ -24,13 +23,21 @@ var ViewModel = {
 
 	removeAllLabels: function(){
 		this.labels([]);
+		if(this.labels().length <6) {
+			this.errorMessage('');
+		};
 	},
+
 	removeLabel: function(item){
 		ViewModel.labels.remove(item);
+		if(ViewModel.labels().length <6 ){
+			ViewModel.errorMessage('');
+		};
 	},
 	editLabel: function(){
 		this.isEdit( true );
 	},
+
 	cancelEditLabel: function(){
 		var test = ViewModel.isValid( this.name());
 		if(test === false){
@@ -39,7 +46,6 @@ var ViewModel = {
 
 		this.isEdit( false );
 	},
-
 
 	isValid: function(labelValue){
 		var self = ViewModel;
@@ -60,7 +66,6 @@ var ViewModel = {
 
 		return true;
 	}
-
 
 };
 
