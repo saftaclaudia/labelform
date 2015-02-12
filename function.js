@@ -16,6 +16,10 @@ var ViewModel = {
 			this.newLabel('');
 			this.errorMessage('');
 		};
+
+		if(this.labels().length >=6 ){
+			this.errorMessage('You have reached the maxim label number');
+		};
 	},
 
 	removeAllLabels: function(){
@@ -39,12 +43,7 @@ var ViewModel = {
 
 	isValid: function(labelValue){
 		var self = ViewModel;
-
-		if ( self.labels().length >= 6 ) {
-			self.errorMessage('You have reached the maxim label number');
-			return false;
-		}
-
+		
 		if ( labelValue.length === 0 ) {
 			self.errorMessage('Write text in the input field');
 			return false;
