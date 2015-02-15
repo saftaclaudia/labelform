@@ -3,11 +3,13 @@ var ViewModel = {
 	labels: ko.observableArray([]),
 	newLabel:ko.observable(''),
 	errorMessage:ko.observable(''),
+
 	
 	addLabel: function () {
 		var labelObj = {
 			name: ko.observable( this.newLabel() ),
-			isEdit: ko.observable( false )
+			isEdit: ko.observable( false ),
+			temporarayName: ''
 		};
 		var test = this.isValid( this.newLabel() );
 
@@ -36,12 +38,17 @@ var ViewModel = {
 	},
 	editLabel: function(){
 		this.isEdit( true );
+		this.temporarayName= this.name();
+		ViewModel.errorMessage('');
 	},
 
-	cancelEditLabel: function(){
+	saveEditLabel: function(){
 		var test = ViewModel.isValid( this.name());
 		if(test === false){
-			return false;
+			this.name(this.temporarayName);
+		}
+		else {
+			ViewModel.errorMessage('');
 		}
 
 		this.isEdit( false );
@@ -56,7 +63,7 @@ var ViewModel = {
 		}
 
 		var filteredArray = self.labels().filter(function(item) {
-			return (item.name() === labelValue);
+			return (item.name() === labelValue && item.isEdit()== false);
 		});
 
 		if ( filteredArray.length > 0 ) {

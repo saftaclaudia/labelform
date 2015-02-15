@@ -19,21 +19,21 @@
 					<button type="reset" class="btn btn-danger" data-bind="click:$root.removeAllLabels, disable:labels().length == 0">Remove All</button>
 				</div>
 			</div>
-			<ul data-bind= "foreach:labels">
+			<ul data-bind= "foreach:labels" class= "label-style">
 					<li class="input-group">
 						<input  type="text" class="form-control" data-bind="
 							value:name,
 							disable: isEdit() == false,
-							hasFocus: isEdit() == true,
-							event: { blur: $root.cancelEditLabel }
+							hasFocus: isEdit() == true
 							">
 						<span class="input-group-btn">
-							<button class="btn btn-default" type="button" data-bind="click:$root.editLabel"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>
+							<button class="btn btn-default" type="button" data-bind="click:$root.editLabel, visible:isEdit()== false"><span class="glyphicon glyphicon-pencil" aria-hidden="true" ></span></button>
+							<button class="btn btn-default" type="button" data-bind="click:$root.saveEditLabel, visible: isEdit()== true"><span class= "glyphicon glyphicon-ok" aria-hidden="true"  ></span></button>
 							<button class="btn btn-default" type="button" data-bind="click:$root.removeLabel"><span class= "glyphicon glyphicon-remove" aria-hidden="true"  ></span></button>
 						</span>
 					</li>
 			</ul>
-			<div class="alert alert-danger" role="alert"  data-bind= "visible:errorMessage().length >0">
+			<div class="alert alert-danger label-style" role="alert"  data-bind= "visible:errorMessage().length >0">
 				<p data-bind ="text:errorMessage"></p>
 			</div>
 
