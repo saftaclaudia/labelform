@@ -19,7 +19,7 @@
 					<button type="reset" class="btn btn-danger" data-bind="click:$root.removeAllLabels, disable:labels().length == 0">Remove All</button>
 				</div>
 			</div>
-			<ul data-bind= "foreach:labels" class= "form-horizontal">
+			<ul data-bind= "foreach:labels">
 					<li class="input-group">
 						<input  type="text" class="form-control" data-bind="
 							value:name,
